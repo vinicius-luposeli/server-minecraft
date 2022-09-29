@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  minecraft-server:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "true"
+    ports:
+      - "25565:25565"
+    volumes:
+      - './server.properties:/data/server.properties'
+      - 'minecraftdata:/data'
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+volumes:
+  minecraftdata:
+    external: true
+  server_prperties:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/vinicius/minecraft-server'
